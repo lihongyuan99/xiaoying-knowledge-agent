@@ -22,7 +22,33 @@ python3 -m pip install -r requirements.txt  # 可选，无实际第三方依赖
 
 以下命令均在仓库根目录执行。
 
-## 快速运行（离线流程 Mock）
+## Web 界面（推荐）
+
+界面支持连续对话、示例问题、资料库浏览、原文引用、资料缺口和完整 ReAct 轨迹，并明确标识真实模型或离线 Mock。
+
+```bash
+# 无模型密钥时，启动离线流程演示
+PYTHONPATH=src python3 -m knowledge_qa.web --mock
+
+# 按下方“真实模型运行”配置环境变量后，去掉 --mock 即可使用真实模型
+PYTHONPATH=src python3 -m knowledge_qa.web
+```
+
+默认监听 `127.0.0.1:8000`，打开 http://127.0.0.1:8000 。可用 `--port 8001` 更换端口。原 CLI 方式继续保留。
+
+### 示例：明确答案与原文引用
+
+真实模型读取 D04 后回答年假申请时限，页面展示版本日期、逐字引用和执行路径。
+
+![明确答案与原文引用](docs/assets/ui-clear-answer.png)
+
+### 示例：制度冲突与追问
+
+真实模型读取 D01、D02 后，同时呈现 30 天与 15 天、资料缺口和适用制度追问，不擅自选择答案。
+
+![文档冲突与追问](docs/assets/ui-conflict.png)
+
+## 快速运行（离线流程 Mock CLI）
 
 ```bash
 PYTHONPATH=src python3 -m knowledge_qa.cli \

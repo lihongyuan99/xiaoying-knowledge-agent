@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知衡 · 企业知识问答 Agent</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M9 5.5h10.5A4.5 4.5 0 0 1 24 10v16.5H13.5A4.5 4.5 0 0 1 9 22V5.5Z"/><path d="M9 8H6.5A2.5 2.5 0 0 0 4 10.5v13A3.5 3.5 0 0 0 7.5 27H20"/><path d="M14 12h5M14 16h5M14 20h3"/></svg>
+        </div>
+        <div><strong>知衡</strong><span>Knowledge Agent</span></div>
+      </div>
+
+      <button class="new-chat" id="new-chat">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        新建会话
+      </button>
+
+      <nav class="side-section">
+        <div class="section-label">示例问题</div>
+        <button class="example-link" data-question="年假需要提前几天申请？">
+          <span class="example-icon blue">01</span><span><strong>明确答案</strong><small>年假需要提前几天申请？</small></span>
+        </button>
+        <button class="example-link" data-question="报销期限多久">
+          <span class="example-icon amber">02</span><span><strong>冲突处理</strong><small>报销期限多久</small></span>
+        </button>
+        <button class="example-link" data-question="在北京出差，酒店每晚最多能报多少钱？">
+          <span class="example-icon teal">03</span><span><strong>相似改写</strong><small>北京酒店每晚报销上限</small></span>
+        </button>
+        <button class="example-link" data-question="公司是否允许带宠物上班？">
+          <span class="example-icon slate">04</span><span><strong>资料不足</strong><small>公司允许带宠物上班吗？</small></span>
+        </button>
+      </nav>
+
+      <div class="side-section docs-section">
+        <div class="section-label">合成资料库 <span id="doc-count">6</span></div>
+        <div id="document-list" class="document-list"></div>
+      </div>
+      <div class="sidebar-foot">所有制度均为合成数据<br>答案仅依据已读取的原文</div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <h1>企业知识问答</h1>
+          <p>检索制度，核验原文，再给出答案</p>
+        </div>
+        <div class="model-pill" id="model-pill"><span class="status-dot"></span><span id="model-name">正在连接本地服务</span></div>
+      </header>
+
+      <div class="chat-scroll" id="chat-scroll">
+        <section class="welcome" id="welcome">
+          <div class="eyebrow">GROUNDED ANSWERS, NOT GUESSES</div>
+          <h2>每一个答案，<br><span>都有原文依据。</span></h2>
+          <p>我会自主选择检索与读取动作。遇到资料冲突时，呈现差异并向你确认，而不是擅自猜测。</p>
+          <div class="welcome-grid">
+            <button data-question="年假需要提前几天申请？"><span>快速开始</span><strong>年假需要提前几天申请？</strong><i>→</i></button>
+            <button data-question="报销期限多久"><span>观察 Agent 决策</span><strong>查看报销制度冲突</strong><i>→</i></button>
+          </div>
+          <div class="principles">
+            <div><b>01</b><span><strong>先检索，再读取</strong><small>搜索片段只用于定位资料</small></span></div>
+            <div><b>02</b><span><strong>引用逐字校验</strong><small>只引用成功读取的原文</small></span></div>
+            <div><b>03</b><span><strong>冲突不擅自裁决</strong><small>说明缺口并请求确认</small></span></div>
+          </div>
+        </section>
+        <section class="messages" id="messages" aria-live="polite"></section>
+      </div>
+
+      <footer class="composer-wrap">
+        <div class="composer">
+          <textarea id="question-input" rows="1" placeholder="输入制度或产品问题…" aria-label="输入问题"></textarea>
+          <button id="send-button" aria-label="发送问题">
+            <svg viewBox="0 0 24 24"><path d="m5 12 14-7-4 14-3-6-7-1Z"/><path d="m12 13 7-8"/></svg>
+          </button>
+        </div>
+        <div class="composer-meta"><span>Enter 发送 · Shift + Enter 换行</span><span id="step-limit">最多 8 步</span></div>
+      </footer>
+    </main>
+  </div>
+  <template id="loading-template"><div class="message assistant loading-message"><div class="avatar">K</div><div class="message-body"><div class="loading-dots"><i></i><i></i><i></i></div><span>正在检索并核验原文…</span></div></div></template>
+  <script src="/app.js"></script>
+</body>
+</html>
