@@ -1,0 +1,90 @@
+{
+  "request": {
+    "question": "在北京出差，酒店每晚最多能报多少钱？",
+    "history": []
+  },
+  "result": {
+    "status": "completed",
+    "answer": "根据 D03，北京出差住宿报销上限为每间每晚 500 元。",
+    "citations": [
+      {
+        "doc_id": "D03",
+        "version_date": "2025-03-01",
+        "quote": "出差住宿报销标准：北京、上海、深圳每间每晚不超过 500 元"
+      }
+    ],
+    "gaps": [],
+    "clarifying_question": "",
+    "steps": 3,
+    "model_mode": "offline_mock"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "action": "search_documents",
+      "arguments": {
+        "query": "在北京出差，酒店每晚最多能报多少钱？",
+        "top_k": 3
+      },
+      "rationale": "先检索与当前问题相关的资料；追问已改写为独立查询。",
+      "observation": {
+        "tool": "search_documents",
+        "ok": true,
+        "result": {
+          "hits": [
+            {
+              "doc_id": "D03",
+              "title": "差旅住宿报销标准",
+              "version_date": "2025-03-01",
+              "score": 7.05,
+              "snippet": "出差住宿报销标准：北京、上海、深圳每间每晚不超过 500 元，其他城市每间每晚不超过 400 元。"
+            }
+          ]
+        },
+        "summary": "检索到 1 篇文档：D03"
+      },
+      "next_action": "read_document"
+    },
+    {
+      "step": 2,
+      "action": "read_document",
+      "arguments": {
+        "doc_id": "D03"
+      },
+      "rationale": "检索片段只用于定位，需读取原文后才能形成有依据的回答。",
+      "observation": {
+        "tool": "read_document",
+        "ok": true,
+        "result": {
+          "document": {
+            "doc_id": "D03",
+            "title": "差旅住宿报销标准",
+            "version_date": "2025-03-01",
+            "content": "出差住宿报销标准：北京、上海、深圳每间每晚不超过 500 元，其他城市每间每晚不超过 400 元。"
+          }
+        },
+        "summary": "已读取 D03（版本 2025-03-01）。"
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 3,
+      "action": "finish",
+      "arguments": {},
+      "rationale": "现有观察已满足该流程分支的结束条件。",
+      "observation": {
+        "ok": true,
+        "summary": "结果与引用校验通过。"
+      },
+      "next_action": "stop"
+    }
+  ],
+  "example_metadata": {
+    "covers": [
+      "改写后的相似问题"
+    ],
+    "data": "data/documents.json",
+    "injected_failures": {},
+    "evidence_boundary": "离线 Mock 仅验证流程与约束，不证明真实模型决策效果。"
+  }
+}

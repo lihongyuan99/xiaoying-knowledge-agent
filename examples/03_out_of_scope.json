@@ -1,0 +1,56 @@
+{
+  "request": {
+    "question": "公司是否允许带宠物上班？",
+    "history": []
+  },
+  "result": {
+    "status": "insufficient_information",
+    "answer": "现有企业资料中没有找到支持该问题的内容，无法给出可靠答案。",
+    "citations": [],
+    "gaps": [
+      "缺少与“公司是否允许带宠物上班？”相关的制度或产品资料。"
+    ],
+    "clarifying_question": "",
+    "steps": 2,
+    "model_mode": "offline_mock"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "action": "search_documents",
+      "arguments": {
+        "query": "公司是否允许带宠物上班？",
+        "top_k": 3
+      },
+      "rationale": "先检索与当前问题相关的资料；追问已改写为独立查询。",
+      "observation": {
+        "tool": "search_documents",
+        "ok": true,
+        "result": {
+          "hits": []
+        },
+        "summary": "检索到 0 篇文档："
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 2,
+      "action": "finish",
+      "arguments": {},
+      "rationale": "现有观察已满足该流程分支的结束条件。",
+      "observation": {
+        "ok": true,
+        "summary": "结果与引用校验通过。"
+      },
+      "next_action": "stop"
+    }
+  ],
+  "example_metadata": {
+    "covers": [
+      "资料外问题"
+    ],
+    "data": "data/documents.json",
+    "injected_failures": {},
+    "evidence_boundary": "离线 Mock 仅验证流程与约束，不证明真实模型决策效果。"
+  }
+}

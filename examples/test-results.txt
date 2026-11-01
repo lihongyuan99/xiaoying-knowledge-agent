@@ -1,0 +1,20 @@
+Command: PYTHONPATH=src python3 -m unittest discover -s tests -v
+Environment: Python 3.13.12, 2026-11-01
+
+test_clear_answer (test_agent.KnowledgeQAAgentTests.test_clear_answer) ... ok
+test_conflict_lists_both_sources_and_asks (test_agent.KnowledgeQAAgentTests.test_conflict_lists_both_sources_and_asks) ... ok
+test_contextual_followup_rewrites_search (test_agent.KnowledgeQAAgentTests.test_contextual_followup_rewrites_search) ... ok
+test_invalid_citation_is_rejected_then_corrected (test_agent.KnowledgeQAAgentTests.test_invalid_citation_is_rejected_then_corrected) ... ok
+test_multiple_json_actions_execute_only_first (test_agent.KnowledgeQAAgentTests.test_multiple_json_actions_execute_only_first) ... ok
+test_non_json_trailing_content_is_rejected (test_agent.KnowledgeQAAgentTests.test_non_json_trailing_content_is_rejected) ... ok
+test_out_of_scope_question (test_agent.KnowledgeQAAgentTests.test_out_of_scope_question) ... ok
+test_paraphrased_question (test_agent.KnowledgeQAAgentTests.test_paraphrased_question) ... ok
+test_replacing_document_changes_grounded_answer (test_agent.KnowledgeQAAgentTests.test_replacing_document_changes_grounded_answer) ... ok
+test_single_search_result_can_answer_without_invented_conflict (test_agent.KnowledgeQAAgentTests.test_single_search_result_can_answer_without_invented_conflict) ... ok
+test_step_limit_returns_explicit_incomplete_status (test_agent.KnowledgeQAAgentTests.test_step_limit_returns_explicit_incomplete_status) ... ok
+test_tool_failure_is_explicit_and_not_fabricated (test_agent.KnowledgeQAAgentTests.test_tool_failure_is_explicit_and_not_fabricated) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.009s
+
+OK

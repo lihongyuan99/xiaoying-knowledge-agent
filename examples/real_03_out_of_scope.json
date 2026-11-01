@@ -1,0 +1,92 @@
+{
+  "request": {
+    "question": "公司是否允许带宠物上班？",
+    "history": []
+  },
+  "result": {
+    "status": "insufficient_information",
+    "answer": "公司内部资料中未检索到关于携带宠物上班的规定，无法确认公司是否允许。",
+    "citations": [],
+    "gaps": [
+      "缺少办公场所或员工行为规范中关于携带宠物上班的制度条款"
+    ],
+    "clarifying_question": "您可以告知该规定可能所在的制度名称（如员工手册、办公管理规定），我再帮您查找。",
+    "steps": 4,
+    "model_mode": "openai_compatible"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "action": "search_documents",
+      "arguments": {
+        "query": "宠物 上班 办公室 政策",
+        "top_k": 3
+      },
+      "rationale": "查找公司关于带宠物上班的内部规定",
+      "observation": {
+        "tool": "search_documents",
+        "ok": true,
+        "result": {
+          "hits": []
+        },
+        "summary": "检索到 0 篇文档："
+      },
+      "next_action": "search_documents"
+    },
+    {
+      "step": 2,
+      "action": "search_documents",
+      "arguments": {
+        "query": "宠物 办公室 带入 办公场所 规定",
+        "top_k": 3
+      },
+      "rationale": "首轮无命中，换用办公场所与携带宠物相关关键词补充检索。",
+      "observation": {
+        "tool": "search_documents",
+        "ok": true,
+        "result": {
+          "hits": []
+        },
+        "summary": "检索到 0 篇文档："
+      },
+      "next_action": "search_documents"
+    },
+    {
+      "step": 3,
+      "action": "search_documents",
+      "arguments": {
+        "query": "宠物 上班 办公区 管理规定",
+        "top_k": 5
+      },
+      "rationale": "前两次检索无结果，换用更宽泛的制度关键词补充检索",
+      "observation": {
+        "tool": "search_documents",
+        "ok": true,
+        "result": {
+          "hits": [
+            {
+              "doc_id": "D01",
+              "title": "费用报销管理规范",
+              "version_date": "2025-01-01",
+              "score": 4.45,
+              "snippet": "员工应在费用发生后 30 天内提交报销申请。"
+            }
+          ]
+        },
+        "summary": "检索到 1 篇文档：D01"
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 4,
+      "action": "finish",
+      "arguments": {},
+      "rationale": "检索结果无宠物相关制度，仅命中无关的费用报销规范，资料不足",
+      "observation": {
+        "ok": true,
+        "summary": "结果与引用校验通过。"
+      },
+      "next_action": "stop"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "request": {
+    "question": "上海住宿报销上限是多少？",
+    "history": []
+  },
+  "result": {
+    "status": "completed",
+    "answer": "根据《差旅住宿报销标准》，上海属于北京、上海、深圳标准适用城市，出差住宿每间每晚不超过 600 元。该资料未说明是否区分职级或特殊情形，如有例外规定需另行确认。",
+    "citations": [
+      {
+        "doc_id": "D03",
+        "version_date": "2025-03-02",
+        "quote": "出差住宿报销标准：北京、上海、深圳每间每晚不超过 600 元，其他城市每间每晚不超过 450 元。"
+      }
+    ],
+    "gaps": [
+      "未说明是否按职级或特殊情形设置不同上限"
+    ],
+    "clarifying_question": "",
+    "steps": 3,
+    "model_mode": "openai_compatible"
+  },
+  "trace": [
+    {
+      "step": 1,
+      "action": "search_documents",
+      "arguments": {
+        "query": "上海 住宿 报销 上限",
+        "top_k": 3
+      },
+      "rationale": "检索上海住宿报销标准相关制度",
+      "observation": {
+        "tool": "search_documents",
+        "ok": true,
+        "result": {
+          "hits": [
+            {
+              "doc_id": "D03",
+              "title": "差旅住宿报销标准",
+              "version_date": "2025-03-02",
+              "score": 7.05,
+              "snippet": "出差住宿报销标准：北京、上海、深圳每间每晚不超过 600 元，其他城市每间每晚不超过 450 元。"
+            },
+            {
+              "doc_id": "D01",
+              "title": "费用报销管理规范",
+              "version_date": "2025-01-01",
+              "score": 2.3,
+              "snippet": "员工应在费用发生后 30 天内提交报销申请。"
+            },
+            {
+              "doc_id": "D02",
+              "title": "费用报销操作细则",
+              "version_date": "2025-02-01",
+              "score": 2.3,
+              "snippet": "员工应在费用发生后 15 天内提交报销申请。"
+            }
+          ]
+        },
+        "summary": "检索到 3 篇文档：D03, D01, D02"
+      },
+      "next_action": "read_document"
+    },
+    {
+      "step": 2,
+      "action": "read_document",
+      "arguments": {
+        "doc_id": "D03"
+      },
+      "rationale": "需读取住宿标准原文以确认上海上限并获取可引用片段",
+      "observation": {
+        "tool": "read_document",
+        "ok": true,
+        "result": {
+          "document": {
+            "doc_id": "D03",
+            "title": "差旅住宿报销标准",
+            "version_date": "2025-03-02",
+            "content": "出差住宿报销标准：北京、上海、深圳每间每晚不超过 600 元，其他城市每间每晚不超过 450 元。"
+          }
+        },
+        "summary": "已读取 D03（版本 2025-03-02）。"
+      },
+      "next_action": "finish"
+    },
+    {
+      "step": 3,
+      "action": "finish",
+      "arguments": {},
+      "rationale": "已读取 D03 原文，上海住宿上限有明确依据，且无相关冲突。",
+      "observation": {
+        "ok": true,
+        "summary": "结果与引用校验通过。"
+      },
+      "next_action": "stop"
+    }
+  ]
+}

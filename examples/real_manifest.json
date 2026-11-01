@@ -1,0 +1,57 @@
+{
+  "run_date": "2026-11-01",
+  "model_mode": "openai_compatible",
+  "model": "deepseek-v4.1-flash",
+  "base_url": "http://127.0.0.1:8788/v1",
+  "api_key_recorded": false,
+  "cases": [
+    {
+      "file": "real_01_clear_answer.json",
+      "status": "completed",
+      "steps": 3,
+      "covers": ["明确答案", "真实模型路径：检索→读 D04→完成"]
+    },
+    {
+      "file": "real_02_conflict.json",
+      "status": "needs_clarification",
+      "steps": 4,
+      "covers": ["文档冲突", "真实模型路径：检索→读 D01→读 D02→追问"]
+    },
+    {
+      "file": "real_03_out_of_scope.json",
+      "status": "insufficient_information",
+      "steps": 4,
+      "covers": ["资料外问题", "三次检索改写", "识别无关命中"]
+    },
+    {
+      "file": "real_04_paraphrase.json",
+      "status": "completed",
+      "steps": 3,
+      "covers": ["改写后的相似问题", "D03/500 元"]
+    },
+    {
+      "file": "real_05_followup.json",
+      "status": "completed",
+      "steps": 3,
+      "covers": ["上下文追问", "上海住宿独立查询改写"]
+    },
+    {
+      "file": "real_06_tool_failure.json",
+      "status": "completed",
+      "steps": 5,
+      "covers": ["注入一次读取失败", "补充检索", "重读恢复", "最终有效引用"]
+    },
+    {
+      "file": "real_07_replaced_document.json",
+      "status": "completed",
+      "steps": 3,
+      "covers": ["替换文档", "答案和引用改为 600 元"]
+    },
+    {
+      "file": "real_08_max_steps.json",
+      "status": "max_steps_exceeded",
+      "steps": 1,
+      "covers": ["真实模型执行上限", "明确未完成"]
+    }
+  ]
+}

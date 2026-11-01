@@ -1,0 +1,76 @@
+[
+  {
+    "file": "01_clear_answer.json",
+    "question": "年假需要提前几天申请？",
+    "status": "completed",
+    "steps": 3,
+    "model_mode": "offline_mock",
+    "covers": [
+      "明确答案"
+    ]
+  },
+  {
+    "file": "02_conflict.json",
+    "question": "报销期限多久",
+    "status": "needs_clarification",
+    "steps": 4,
+    "model_mode": "offline_mock",
+    "covers": [
+      "文档冲突",
+      "双执行路径之一"
+    ]
+  },
+  {
+    "file": "03_out_of_scope.json",
+    "question": "公司是否允许带宠物上班？",
+    "status": "insufficient_information",
+    "steps": 2,
+    "model_mode": "offline_mock",
+    "covers": [
+      "资料外问题"
+    ]
+  },
+  {
+    "file": "04_paraphrase.json",
+    "question": "在北京出差，酒店每晚最多能报多少钱？",
+    "status": "completed",
+    "steps": 3,
+    "model_mode": "offline_mock",
+    "covers": [
+      "改写后的相似问题"
+    ]
+  },
+  {
+    "file": "05_followup.json",
+    "question": "那上海呢？",
+    "status": "completed",
+    "steps": 3,
+    "model_mode": "offline_mock",
+    "covers": [
+      "上下文追问",
+      "检索改写"
+    ]
+  },
+  {
+    "file": "06_tool_failure.json",
+    "question": "北京住宿标准是多少？",
+    "status": "tool_error",
+    "steps": 3,
+    "model_mode": "offline_mock",
+    "covers": [
+      "工具失败",
+      "失败路径"
+    ]
+  },
+  {
+    "file": "07_replaced_document.json",
+    "question": "上海住宿报销上限是多少？",
+    "status": "completed",
+    "steps": 3,
+    "model_mode": "offline_mock",
+    "covers": [
+      "替换文档后答案改变",
+      "引用同步改变"
+    ]
+  }
+]
